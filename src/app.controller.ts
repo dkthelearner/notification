@@ -5,10 +5,10 @@ import { INotificationPayload } from './types';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+    constructor(private readonly appService: AppService) {}
 
-  @EventPattern('send_notification')
-  public sendNotification(@Payload() payload: INotificationPayload): void {
-    this.appService.createNotifications(payload);
-  }
+    @EventPattern('send_notification')
+    public async sendNotification(@Payload() payload: INotificationPayload): Promise<void> {
+        await this.appService.createNotifications(payload);
+    }
 }
